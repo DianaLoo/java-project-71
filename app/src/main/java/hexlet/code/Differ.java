@@ -3,20 +3,22 @@ package hexlet.code;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Map;
-import java.util.Objects;
-import java.lang.Exception;
+import java.util.List;
+
 
 public class Differ {
-    public static String generate(String filePath1, String filePath2, String format) throws Exception {
-        String content1 = readFile(filePath1);
-        String content2 = readFile(filePath2);
+    public static String generate(String filepath1, String filepath2, String format) throws Exception {
+        String content1 = readFile(filepath1);
+        String content2 = readFile(filepath2);
 
-        String fileFormat1 = getFileType(filePath1);
-        String fileFormat2 = getFileType(filePath2);
+        String fileFormat1 = getFileType(filepath1);
+        String fileFormat2 = getFileType(filepath2);
 
         //распарсили
         Map<String, Object> file1 = Parser.parse(content1, fileFormat1);
         Map<String, Object> file2 = Parser.parse(content2, fileFormat2);
+
+        List<Map<String, Object>> compareResult = Contrast.compare(file1, file2);
         return "";
     }
 
