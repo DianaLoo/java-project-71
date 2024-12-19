@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 
 public class AppTest {
+
     @Test
     void test() throws IOException {
         String file1 = readString(Path.of("src/main/resources/file1.json"));
