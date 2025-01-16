@@ -1,0 +1,24 @@
+[
+  {
+  "value1" : false,
+  "key" : "follow",
+  "status" : "added"
+}, {
+  "value1" : "hexlet.io",
+  "key" : "host",
+  "status" : "unchanged"
+}, {
+  "value1" : "123.234.53.22",
+  "key" : "proxy",
+  "status" : "removed"
+}, {
+  "value2" : 20,
+  "value1" : 50,
+  "key" : "timeout",
+  "status" : "changed"
+}, {
+  "value1" : true,
+  "key" : "verbose",
+  "status" : "added"
+}
+]
