@@ -19,9 +19,11 @@ public class Differ {
         Map<String, Object> file2 = Parser.parse(content2, fileFormat2);
 
         List<Map<String, Object>> compareResult = Contrast.compare(file1, file2);
-        return compareResult.toString();
+        return Formatter.formatterForm(compareResult, format);
     }
-
+    public static String generate(String filepath1, String filepath2) throws Exception {
+        return generate(filepath1, filepath2, "stylish");
+    }
     public static String readFile(String filePath) throws Exception {
         //Читаем содержимое файла
         var path = Paths.get(filePath).toAbsolutePath().normalize();
