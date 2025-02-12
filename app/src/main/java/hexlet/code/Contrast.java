@@ -19,29 +19,49 @@ public class Contrast {
             Map<String, Object> difference = new HashMap<>();
             Object value1 = file1.get(key);
             Object value2 = file2.get(key);
-            difference.put("key", key);
-            if (file1.containsKey(key) && file2.containsKey(key)) {
-                if (Objects.equals(value1, value2)) {
-                    difference.put("status", "unchanged");
-                    difference.put("value1", value1);
-                    difference.put("value2", value2);
-                } else {
-                    difference.put("status", "changed");
-                    difference.put("value1", value1);
-                    difference.put("value2", value2);
-                }
-            } else if (file1.containsKey(key)) {
-                difference.put("status", "removed");
-                difference.put("value1", value1);
-                difference.put("value2", null);
-            } else if (file2.containsKey(key)) {
+            //difference.put("key", key);
+            if (!file1.containsKey(key)) {
+                difference.put("key", key);
                 difference.put("status", "added");
-                difference.put("value1", null);
+                difference.put("value", value2);
+                result.add(difference);
+            } else if (!file2.containsKey(key)) {
+                difference.put("key", key);
+                difference.put("status", "removed");
+                difference.put("value", value1);
+                result.add(difference);
+            } else if (Objects.equals(value1, value2)) {
+                difference.put("key", key);
+                difference.put("status", "unchanged");
+                difference.put("value", value1);
+                result.add(difference);
+            } else {
+                difference.put("key", key);
+                difference.put("status", "changed");
+                difference.put("value1", value1);
                 difference.put("value2", value2);
+                result.add(difference);
             }
-            result.add(difference);
+//            if (file1.containsKey(key) && file2.containsKey(key)) {
+//                if (Objects.equals(value1, value2)) {
+//                    difference.put("status", "unchanged");
+//                    difference.put("value", value1);
+//                } else {
+//                    difference.put("status", "changed");
+//                    difference.put("value1", value1);
+//                    difference.put("value2", value2);
+//                }
+//            } else if (file1.containsKey(key)) {
+//                    difference.put("status", "removed");
+//                    difference.put("value", value1);
+//
+//                } else if (file2.containsKey(key)) {
+//                    difference.put("status", "added");
+//                    difference.put("value", value2);
+//                }
+                //result.add(difference);
+            }
+            return result;
         }
-        return result;
     }
-}
 

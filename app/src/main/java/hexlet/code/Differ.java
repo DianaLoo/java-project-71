@@ -19,7 +19,7 @@ public class Differ {
         Map<String, Object> file2 = Parser.parse(content2, fileFormat2);
 
         List<Map<String, Object>> compareResult = Contrast.compare(file1, file2);
-        return "";
+        return compareResult.toString();
     }
 
     public static String readFile(String filePath) throws Exception {
