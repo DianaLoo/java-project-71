@@ -2,10 +2,12 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import hexlet.code.Differ;
 
+import static java.nio.file.Files.readString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DifferTest {
@@ -15,9 +17,9 @@ public class DifferTest {
     @BeforeAll
     public static void readResult() throws Exception {
 
-        expectedJson = Files.readString(Paths.get("src/test/resources/result.json")).trim();
-        expectedStylish = Files.readString(Paths.get("src/test/resources/resultStylish")).trim();
-        expectedPlain = Files.readString(Paths.get("src/test/resources/resultPlain")).trim();
+        expectedJson = readString(Paths.get("src/test/resources/result.json")).trim();
+        expectedStylish = readString(Paths.get("src/test/resources/resultStylish")).trim();
+        expectedPlain = readString(Paths.get("src/test/resources/resultPlain")).trim();
 
     }
     @Test
@@ -27,7 +29,7 @@ public class DifferTest {
     }
     @Test
     public void testToYamlInJson() throws Exception {
-        var actual = Differ.generate("src/test/resources/file1.yaml", "src/test/resources/file2.yaml", "json");
+        var actual = Differ.generate("/src/test/resources/file1.yaml","src/test/resources/file2.yaml", "json");
         assertEquals(expectedJson, actual);
     }
     @Test

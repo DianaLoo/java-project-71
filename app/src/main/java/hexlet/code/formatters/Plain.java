@@ -29,7 +29,7 @@ public class Plain {
                     break;
             }
         }
-        return result.toString();
+        return result.toString().trim();
     }
     private static String property(Object value) {
         if (value instanceof List || value instanceof Map) {
