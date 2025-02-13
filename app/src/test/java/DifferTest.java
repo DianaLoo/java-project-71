@@ -29,7 +29,7 @@ public class DifferTest {
     }
     @Test
     public void testToYamlInJson() throws Exception {
-        var actual = Differ.generate("/src/test/resources/file1.yaml","src/test/resources/file2.yaml", "json");
+        var actual = Differ.generate("src/test/resources/file1.yaml","src/test/resources/file2.yaml", "json");
         assertEquals(expectedJson, actual);
     }
     @Test
