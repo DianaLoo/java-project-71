@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -14,6 +13,7 @@ public class DifferTest {
     private static String expectedJson;
     private static String expectedStylish;
     private static String expectedPlain;
+
     @BeforeAll
     public static void readResult() throws Exception {
 
@@ -22,44 +22,48 @@ public class DifferTest {
         expectedPlain = readString(Paths.get("src/test/resources/resultPlain")).trim();
 
     }
+    private static Path getFixturePath(String fileName) {
+        return Paths.get("src", "test", "resources", fileName)
+                .toAbsolutePath().normalize();
+    }
     @Test
     public void testToJsonInJson() throws Exception {
-        var actual = Differ.generate("src/test/resources/file1.json", "src/test/resources/file2.json", "json");
+        var actual = Differ.generate(getFixturePath("file1.json").toString(), getFixturePath("file2.json").toString(), "json");
         assertEquals(expectedJson, actual);
     }
     @Test
     public void testToYamlInJson() throws Exception {
-        var actual = Differ.generate("src/test/resources/file1.yaml","src/test/resources/file2.yaml", "json");
+        var actual = Differ.generate(getFixturePath("file1.yaml").toString(), getFixturePath("file2.yaml").toString(), "json");
         assertEquals(expectedJson, actual);
     }
     @Test
     public void testToJsonInStylish() throws Exception {
-        var actual = Differ.generate("src/test/resources/file1.json", "src/test/resources/file2.json", "stylish");
+        var actual = Differ.generate(getFixturePath("file1.json").toString(), getFixturePath("file2.json").toString(), "stylish");
         assertEquals(expectedStylish, actual);
     }
     @Test
     public void testToYamlInStylish() throws Exception {
-        var actual = Differ.generate("src/test/resources/file1.yaml", "src/test/resources/file2.yaml", "stylish");
+        var actual = Differ.generate(getFixturePath("file1.yaml").toString(), getFixturePath("file2.yaml").toString(), "stylish");
         assertEquals(expectedStylish, actual);
     }
     @Test
     public void testToJsonInPlain() throws Exception {
-        var actual = Differ.generate("src/test/resources/file1.json", "src/test/resources/file2.json", "plain");
+        var actual = Differ.generate(getFixturePath("file1.json").toString(), getFixturePath("file2.json").toString(), "plain");
         assertEquals(expectedPlain, actual);
     }
     @Test
     public void testToYamlInPlain() throws Exception {
-        var actual = Differ.generate("src/test/resources/file1.yaml", "src/test/resources/file2.yaml", "plain");
+        var actual = Differ.generate(getFixturePath("file1.yaml").toString(), getFixturePath("file2.yaml").toString(), "plain");
         assertEquals(expectedPlain, actual);
     }
     @Test
     public void testToJson() throws Exception {
-        var actual = Differ.generate("src/test/resources/file1.json", "src/test/resources/file2.json");
+        var actual = Differ.generate(getFixturePath("file1.json").toString(), getFixturePath("file2.json").toString());
         assertEquals(expectedStylish, actual);
     }
     @Test
     public void testToYaml() throws Exception {
-        var actual = Differ.generate("src/test/resources/file1.yaml", "src/test/resources/file2.yaml");
+        var actual = Differ.generate(getFixturePath("file1.yaml").toString(), getFixturePath("file2.yaml").toString());
         assertEquals(expectedStylish, actual);
     }
 }
