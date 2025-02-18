@@ -17,14 +17,13 @@ public class Json {
         try {
             String jsonResult = mapper.writer(pp)
                     .writeValueAsString(file);
-            jsonResult = jsonResult.replaceFirst("\\[" , "[\n");
+            jsonResult = jsonResult.replaceFirst("\\[", "[\n");
             jsonResult = jsonResult.replaceAll("}, \\{", "  },\n  {");
             jsonResult = jsonResult.replace("} ]", "  }\n]");
             return jsonResult;
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-
     }
 }
 
