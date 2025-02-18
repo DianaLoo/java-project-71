@@ -11,8 +11,6 @@ import java.util.Map;
 public class Formatter {
     public static String formatterForm(List<Map<String, Object>> file, String format) throws JsonProcessingException {
         switch (format) {
-            //case "stylish":
-              //  return Stylish.formatStylish(file);
             case "json":
                 return Json.formatJson(file);
             case "plain":
