@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Formatter {
-    public static String formatterForm(List<Map<String, Object>> file, String format) throws JsonProcessingException {
+    public static String formatterForm(List<Map<String, Object>> file, String format) throws Exception {
         switch (format) {
             case "json":
                 return Json.formatJson(file);

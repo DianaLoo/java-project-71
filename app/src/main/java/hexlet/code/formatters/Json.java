@@ -10,21 +10,9 @@ import java.util.Map;
 
 
 public class Json {
-    public static String formatJson(List<Map<String, Object>> file) throws JsonProcessingException {
-        DefaultPrettyPrinter pp = new MyPrettyPrinter();
-
-        ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS);
-
-        try {
-            String jsonResult = mapper.writer(pp)
-                    .writeValueAsString(file);
-            jsonResult = jsonResult.replaceFirst("\\[", "[\n");
-            jsonResult = jsonResult.replaceAll("}, \\{", " },\n {");
-            jsonResult = jsonResult.replace("} ]", " }\n]");
-            return jsonResult;
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
+    public static String formatJson(List file) throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.writeValueAsString(file);
     }
 }
 
