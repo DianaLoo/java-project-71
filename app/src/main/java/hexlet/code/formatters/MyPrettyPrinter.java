@@ -6,7 +6,7 @@ import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 
 import java.io.IOException;
 
-public class MyPrettyPrinter extends DefaultPrettyPrinter {
+public final class MyPrettyPrinter extends DefaultPrettyPrinter {
     @Override
     public DefaultPrettyPrinter createInstance() {
         return new MyPrettyPrinter();
