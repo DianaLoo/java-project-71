@@ -8,6 +8,7 @@ import hexlet.code.Differ;
 
 import static java.nio.file.Files.readString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.skyscreamer.jsonassert.JSONAssert;
 
 public class DifferTest {
     private static String expectedJson;
@@ -30,13 +31,13 @@ public class DifferTest {
     public void testToJsonInJson() throws Exception {
         var actual = Differ.generate(getFixturePath("file1.json").toString(),
                 getFixturePath("file2.json").toString(), "json");
-        assertEquals(expectedJson, actual);
+        JSONAssert.assertEquals(expectedJson, actual, false);
     }
     @Test
     public void testToYamlInJson() throws Exception {
         var actual = Differ.generate(getFixturePath("file1.yaml").toString(),
                 getFixturePath("file2.yaml").toString(), "json");
-        assertEquals(expectedJson, actual);
+        JSONAssert.assertEquals(expectedJson, actual, false);
     }
     @Test
     public void testToJsonInStylish() throws Exception {
